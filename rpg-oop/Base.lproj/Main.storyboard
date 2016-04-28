@@ -21,13 +21,16 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="jkb-4j-2Xd">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksJ-nU-zz6" userLabel="chest">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksJ-nU-zz6" userLabel="chest">
                                 <rect key="frame" x="440" y="404" width="118" height="116"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="118" id="Vug-zE-WI3"/>
                                     <constraint firstAttribute="height" constant="116" id="Xel-ze-jL2"/>
                                 </constraints>
                                 <state key="normal" image="chest"/>
+                                <connections>
+                                    <action selector="onChestPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KFh-8n-mJj"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ground" translatesAutoresizingMaskIntoConstraints="NO" id="H7j-1X-Erf">
                                 <rect key="frame" x="0.0" y="517" width="389" height="83"/>
@@ -76,7 +79,7 @@
                                     <constraint firstAttribute="width" constant="194" id="zUh-bw-lZ1"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player attacked wild Kimara!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thA-Gs-BQV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press the attack button to attack!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thA-Gs-BQV">
                                 <rect key="frame" x="76" y="51" width="447" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="447" id="9Qw-sX-kvK"/>
@@ -115,6 +118,9 @@
                                     <constraint firstAttribute="width" constant="86" id="T9v-hU-0Ah"/>
                                 </constraints>
                                 <state key="normal" image="attack"/>
+                                <connections>
+                                    <action selector="onAttackPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zXS-CJ-zau"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -159,7 +165,6 @@
                         <outlet property="chestBtn" destination="ksJ-nU-zz6" id="sN6-Cx-VVa"/>
                         <outlet property="enemyHPLbl" destination="kWy-H3-1dZ" id="gWC-YS-jx8"/>
                         <outlet property="enemyImg" destination="TTd-G6-qge" id="zAW-Ry-9O2"/>
-                        <outlet property="onChestPressed" destination="ksJ-nU-zz6" id="xRh-Jz-Lhe"/>
                         <outlet property="playerHPLbl" destination="uhs-hl-2Ye" id="uNk-At-qGd"/>
                         <outlet property="printLbl" destination="thA-Gs-BQV" id="W8G-dk-oUL"/>
                     </connections>

@@ -23,6 +23,10 @@ class Player: Character {
             return _inventory
     }
     
+    func addItemToInventory(item: String) {
+        _inventory.append(item)
+    }
+    
     //create initialization function that calls to the parent but also givesthe Player a name
     convenience init(name:String, hp: Int, attackPwr: Int) {
         self.init(startingHP: hp, attackPwr: attackPwr)

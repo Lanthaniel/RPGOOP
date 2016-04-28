@@ -306,6 +306,7 @@
 				8413A5441CD170D4003FA9EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

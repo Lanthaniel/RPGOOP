@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     //properties
     var player: Player!
     var enemy: Enemy!
-    
+    var chestMessage: String?
     
     
     override func viewDidLoad() {
@@ -37,19 +37,58 @@ class ViewController: UIViewController {
         playerHPLbl.text = "\(player.hp) HP"
     }
     
+    //Function to generate a random enemy, and update the displayed text
     func generateRandomEnemy() {
         let rand = Int(arc4random_uniform(2))
         
+        //select random enemy based on random number
         if (rand == 0) {
             enemy = Kimara(startingHP: 50, attackPwr: 12)
         }
         else {
             enemy = DevilWizard(startingHP: 60, attackPwr: 15)
         }
+        
+        enemyImg.hidden = false
+        enemyHPLbl.text = "\(enemy.hp) HP"
     }
 
-    @IBOutlet weak var onChestPressed: UIButton!
     
+    //Function to hide the chest and call for a new enemy to generate
+    @IBAction func onChestPressed(sender: AnyObject) {
+        chestBtn.hidden = true
+        printLbl.text = chestMessage
+        NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: #selector(ViewController.generateRandomEnemy), userInfo: nil, repeats: false)
+    }
+    
+    //Function to attack enemy
+    @IBAction func onAttackPressed(sender: AnyObject) {
+        
+        //if attack succeeds, update HP label and Game Message
+        if enemy.attemptAttack(player.attackPwr) {
+            printLbl.text = "Attacked \(enemy.type) for \(player.attackPwr) HP"
+            enemyHPLbl.text = "\(enemy.hp) HP"
+        }
+        //if attack fails inform the player
+        else {
+            printLbl.text = "Attack was unsuccessful!"
+        }
+        
+        //if loot is dropped, display informative text and reveal the chest
+        if let loot = enemy.dropLoot() {
+            player.addItemToInventory(loot)
+            chestMessage = "\(player.name) found \(loot)"
+            chestBtn.hidden = false
+        }
+        
+        //if enemy dies, inform the player and remove the enemy
+        if !enemy.isAlive {
+            enemyHPLbl.text = ""
+            printLbl.text = "Killed \(enemy.type)"
+            enemyImg.hidden = true
+        }
+        
+    }
 
 }
 
