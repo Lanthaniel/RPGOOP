@@ -68,26 +68,31 @@ class ViewController: UIViewController {
         if enemy.attemptAttack(player.attackPwr) {
             printLbl.text = "Attacked \(enemy.type) for \(player.attackPwr) HP"
             enemyHPLbl.text = "\(enemy.hp) HP"
+            
+            //if loot is dropped, display informative text and reveal the chest
+            if let loot = enemy.dropLoot() {
+                player.addItemToInventory(loot)
+                chestMessage = "\(player.name) found \(loot)"
+                chestBtn.hidden = false
+            }
+            
+            //if enemy dies, inform the player and remove the enemy
+            if !enemy.isAlive {
+                enemyHPLbl.text = ""
+                printLbl.text = "Killed \(enemy.type)"
+                enemyImg.hidden = true
+            }
         }
         //if attack fails inform the player
         else {
-            printLbl.text = "Attack was unsuccessful!"
+            //if the monster is dead AKA there is nothing to attack
+            if( enemy.hp <= 0) {
+                printLbl.text = "Hold your horses! There is nothing to attack..."
+            }
+            else {
+                printLbl.text = "Attack was unsuccessful!"
+            }
         }
-        
-        //if loot is dropped, display informative text and reveal the chest
-        if let loot = enemy.dropLoot() {
-            player.addItemToInventory(loot)
-            chestMessage = "\(player.name) found \(loot)"
-            chestBtn.hidden = false
-        }
-        
-        //if enemy dies, inform the player and remove the enemy
-        if !enemy.isAlive {
-            enemyHPLbl.text = ""
-            printLbl.text = "Killed \(enemy.type)"
-            enemyImg.hidden = true
-        }
-        
     }
 
 }

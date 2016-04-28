@@ -42,6 +42,10 @@ class Character {
     }
     
     func attemptAttack(attackPwr: Int) -> Bool {
+        
+        if(self._hp <= 0) {
+            return false
+        }
         self._hp -= attackPwr
         
         return true
